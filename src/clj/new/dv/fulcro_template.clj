@@ -54,7 +54,7 @@
 (defn check-available [options]
   (let [options-set (into #{} options)
         abort?      (not (set/superset? available-set
-                           options-set))]
+                                        options-set))]
     (when abort?
       (println "\nError: invalid profile(s)\n")
       (System/exit 1))))
