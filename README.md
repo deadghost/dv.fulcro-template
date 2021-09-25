@@ -31,26 +31,22 @@ but differs in backend tech and will continue to diverge as features are added t
 
 # Use it
 
-Add a `new` alias to your user deps.edn file. For instructions see:
+## Setup clj-new
 
-https://github.com/seancorfield/clj-new
+Add a `new` alias to your user deps.edn file. This can be found at
+`~/.clojure/deps.edn` or `~/.config/clojure/deps.edn`.
 
-Then construct a new project as specified below.
-
-After it is generated you should run:
-
-```bash
-yarn
-yarn outdated
+```
+;; add this inside your :aliases map:
+:new {:extra-deps {com.github.seancorfield/clj-new
+                   {:mvn/version "1.2.362"}}
+      :exec-fn clj-new/create
+      :exec-args {:template "app"}}
 ```
 
-and
+For latest instructions see: https://github.com/seancorfield/clj-new
 
-```bash
-clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}}' -m antq.core
-```
-
-and update any out of date dependencies.
+## Create a new project
 
 Using Clojure CLI version 1.10.1.727 or later
 ```bash
@@ -207,6 +203,23 @@ $ tree -a
 27 directories, 51 files
 
 ```
+
+## Update Dependencies
+
+After your project is generated you should run the following in your project:
+
+```bash
+yarn
+yarn outdated
+```
+
+and
+
+```bash
+clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}}' -m antq.core
+```
+
+and update any out of date dependencies.
 
 # Building the template repo itself
 
